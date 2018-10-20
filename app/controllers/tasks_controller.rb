@@ -5,7 +5,7 @@ class TasksController < ApplicationController
     @tasks = current_user.tasks.recent
   end
 
-  def showm
+  def show
   end
 
   def new
