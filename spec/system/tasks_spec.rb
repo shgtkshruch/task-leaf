@@ -19,5 +19,18 @@ describe 'タスク管理機能', type: :system do
         expect(page).to have_content '最初のタスク'
       end
     end
+    context 'ユーザーBがログインしているとき' do
+      before do
+        create(:user, name: 'ユーザーB', email: 'b@example.com')
+        visit login_path
+        fill_in 'メールアドレス', with: 'b@example.com'
+        fill_in 'パスワード', with: 'password'
+        click_button 'ログインする'
+      end
+
+      it 'ユーザーAが作成したタスクが表示されない' do
+        expect(page).to have_no_content '最初のタスク'
+      end
+    end
   end
 end
